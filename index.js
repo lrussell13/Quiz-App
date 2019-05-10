@@ -7,9 +7,3 @@
 //Move to the next question by interactive element or automatically
 //See overall score at the end of the quiz
 //Be able to start a new quiz
-
-const questions = [
-    {question:
-    },{
-
-    },]
