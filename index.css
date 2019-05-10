@@ -1,21 +1,29 @@
 * {
     margin: 0;
     padding: 0;
+    
 }
 
 body {
-    background-color: #ffffff;
-    color: #363946;
+    background-color:grey;
+    color: black;
+    font-family: Raleway, 'Times New Roman', Times, serif;
     font-size: 30px;
+    background: url("content/Avengers6.jpg") center fixed no-repeat;
 }
 
 header {
     text-align: center;
-    margin-bottom: 25px;    
+    margin: 37px 0px;
+        
 }
 
 header img {
-    margin: 25px 0px;
+    margin: auto;
+    height: 80px;
+    background-color: white;
+    border-radius: 25px;
+    margin: 20px 0px 0px 0px;
 }
 
 header ul {
@@ -29,22 +37,33 @@ header ul li {
 }
 
 .container {
-    margin: auto;
+    margin: 50px auto;
     width: 75%;
     max-width: 600px;
     height: auto;
-    border: solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.containerStart {
+    margin: 150px auto;
+    width: 75%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
     text-align: center;
 }
 
 h1{
-    margin: auto;
+    margin: 25px auto 0px auto;
     text-align: center;
     width: 75%;
+    font-size: 45px;
+    margin-top: 15px;
 }
 
 h2  {
-    font-size: 20px;
+    font-size: 25px;
     padding: 30px 0px;
     text-align: center;
 }
@@ -53,6 +72,7 @@ h2  {
     display: flex;
     justify-content: center;
     border: solid black 2px;
+    border-radius: 10px;
     width: 66%;
     margin: auto;
     margin-bottom: 25px;
@@ -62,6 +82,7 @@ h2  {
 label {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 label input {
@@ -81,13 +102,42 @@ form fieldset{
 
 
 .submit {
-    font-size: 30px;
+    margin-bottom: 25px;
+    font-size: 25px;
     padding: 5px 5px;
     border: solid black 2px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
+.quizSubmit {
+    background-image: url("content/arrow.svg");
+    margin-bottom: 25px;
+    font-size: 0;
+    height: 70px;
+    width: 70px;
+    border: none;
+    border-radius: 50px;
+}
 
+.answerOption:hover {
+    background-color: black;
+    color: white;
+  }
 
+.answerOption:checked {
+    background-color: black;
+    color: white;
+}
 
+input[type=radio] {
+    opacity: 0;
+    position: absolute;
 
+}
+
+input[type=radio]:checked + label {
+    background-color: black;
+    color: white;
+}
   
