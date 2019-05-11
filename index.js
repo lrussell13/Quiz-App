@@ -187,7 +187,7 @@ function handleRetakeQuiz() {
 function getFieldset(arr) {
     let eachOptionArr = arr.map(x => 
     `
-    <input type="radio" id="radio${x}" value="${x}" name="answer" required></input>
+    <input type="radio" id="radio${x}" value="${x}" name="answer" role="radio" required></input>
     <label for="radio${x}" class="answerOption">${x}</label>
     `);
 
