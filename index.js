@@ -198,8 +198,7 @@ function determineTemplate(store){
                 </label>
             </form>
         </div>
-        <footer>
-        </footer>`;
+        `;
     } else if (store.view === "quiz"){
         template = 
         `
@@ -260,8 +259,6 @@ function determineTemplate(store){
                 </label>
             </form>
         </div>
-        <footer>
-        </footer>
         `;
     }
     return template;
