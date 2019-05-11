@@ -5,10 +5,11 @@ const store = {
     rightOrWrong: "",
     currentSelectedAnswer: "",
     reviewMessage: "",
-    wrongMessage: "",
+    ifWrongMessage: "",
     quizArr: [{
         question: "What is the name of Thor’s hammer?",
         answer: "Mjolnir",
+        fact: "Mjolnir was made out of Asgardian metal in a magical forge at the heart of a dying star.",
         options: [
             "Vanir", 
             "Aesir",
@@ -18,6 +19,7 @@ const store = {
     },{
         question: "Where did Scott Lang work before becoming Ant-Man?",
         answer: "Baskin Robbins",
+        fact: "Following his release from San Quentin, Scott Lang searched for a job in order to provide financially for his family, only to have his criminal record preventing him from finding one. Adopting the fake identity of Jack, he obtained a job at a Baskin-Robbins shop in San Francisco.",
         options: [
             "Jamba Juice", 
             "Chipotle",
@@ -27,6 +29,7 @@ const store = {
     },{
         question: "What is the name of the tape that Peter Quill listens to on his Walkman?",
         answer: "Awesome Mix Vol. 1",
+        fact: "As he explains it, the songs on Awesome Mix Vol. 1 are a collection of his mother’s favorite tunes from growing up in the 1970s.",
         options: [
             "Awesome Mix Vol. 1", 
             "Great Tunes Vol. 1",
@@ -36,6 +39,8 @@ const store = {
     },{
         question: "What type of Giants appear in Thor?",
         answer: "Frost Giants",
+        fact: `"From a realm of cold and darkness came the Frost Giants. Threatening to plunge the mortal world into a new ice age."
+        ―Odin`,
         options: [
             "Storm Giants", 
             "Frost Giants",
@@ -44,16 +49,19 @@ const store = {
         ]
     },{
         question: "What Movie did Thanos first appear in?",
-        answer: "Avengers",
+        answer: "The Avengers",
+        fact: "Thanos first appears during the end credits of The Avengers as Loki's mysterious benefactor.",
         options: [
             "Thor Ragnarock", 
             "Captain America: Civil War",
-            "Avengers",
+            "The Avengers",
             "Iron Man"
         ]
     },{
         question: "What is the name of the Super Soldier project that created Captain America?",
         answer: "Project Rebirth",
+        fact: `"Peg, all I've done my whole life is create destruction. Project Rebirth was... He was the one thing I've done... that brought good into this world."
+        ―Howard Stark to Peggy Carter`,
         options: [
             "Project Peagasus", 
             "Project Rebirth",
@@ -63,6 +71,7 @@ const store = {
     },{
         question: "What is the name of Star-Lords ship in Guardians of the Galaxy?",
         answer: "Milano",
+        fact: "According to Director James Gunn, the Milano is named after Peter Quill's childhood crush Alyssa Milano.",
         options: [
             "Milano", 
             "Jefferson Starship",
@@ -72,6 +81,8 @@ const store = {
     },{
         question: "What is Agent Coulson’s real first name?",
         answer: "Phil",
+        fact: `"You want a symbol? You are the symbol. There's no S.H.I.E.L.D. without you. There's nothing without you."
+        ―Daisy Johnson to Phil Coulson`,
         options: [
             "Agent", 
             "Paul",
@@ -81,6 +92,7 @@ const store = {
     },{
         question: "What type of radiation turned Bruce Banner into the Hulk?",
         answer: "Gamma Radiation",
+        fact: "Bruce Banner experimented with gamma radiation in hopes of making soldiers immune to radiation poisoning, as per his agreement with Thaddeus Ross, and accidentally turned himself into the Hulk in the process.",
         options: [
             "Delta Radiation", 
             "Sigma Radiation",
@@ -90,6 +102,7 @@ const store = {
     },{
         question: "What year did Captain America come out of his icey coma?",
         answer: "2011",
+        fact: "At the end of The First Avenger, Steve Rogers is thawed from the Arctic ice and wakes up in 2011. It’s too bad: He had a date.",
         options: [
             "2009", 
             "2010",
@@ -158,10 +171,10 @@ function checkAnswer(store){
     if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
         store.score++;
         store.rightOrWrong = "You were right!";   
-        store.wrongMessage = "";
+        store.ifWrongMessage = "";
     } else {
         store.rightOrWrong = "You were wrong.";
-        store.wrongMessage = `The correct answer is ${store.quizArr[(store.currentQuestion) - 1].answer}`
+        store.ifWrongMessage = `The correct answer is ${store.quizArr[(store.currentQuestion) - 1].answer}`
     }
 }
 
@@ -226,7 +239,8 @@ function determineTemplate(store){
         </header>
         <div class="container">
             <h1>${store.rightOrWrong}</h1>
-            <h2 class="question">${store.wrongMessage}</h2>
+            <h2 class="question">${store.ifWrongMessage}</h2>
+            <h3>${store.quizArr[store.currentQuestion - 1].fact}</h3>
             <form class="submitNextQuestion">
                 <label>
                     <input type="submit" class="quizSubmit"></input>
