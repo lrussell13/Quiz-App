@@ -223,7 +223,7 @@ function determineTemplate(store){
         <div class="container">
             <h2 class="question">${store.quizArr[store.currentQuestion - 1].question}</h2>
             <form class="quiz">
-                <fieldset>
+                <fieldset role="radiogroup">
                         ${getFieldset(store.quizArr[store.currentQuestion - 1].options)}
                 </fieldset>
                 <label>
