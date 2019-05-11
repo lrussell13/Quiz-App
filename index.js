@@ -133,7 +133,6 @@ function handleSubmitAnswer(store) {
 function handleSubmitNextQuestion(store){
     $(".submitNextQuestion").on("submit", function(event){
         if(store.currentQuestion < store.quizArr.length){
-            console.log(store.currentQuestion)
             event.preventDefault();
             store.view = "quiz";
             incrementCurrentQuestion();
@@ -185,6 +184,19 @@ function handleRetakeQuiz() {
     }); 
 }
 
+function getFieldset(arr) {
+    let eachOptionArr = arr.map(x => 
+    `
+    <input type="radio" id="radio${x}" value="${x}" name="answer" required></input>
+    <label for="radio${x}" class="answerOption">${x}</label>
+    `);
+
+    return eachOptionArr.join("");
+}
+
+
+
+
 function determineTemplate(store){
     let template = "";
     if(store.view === "start"){
@@ -212,14 +224,7 @@ function determineTemplate(store){
             <h2 class="question">${store.quizArr[store.currentQuestion - 1].question}</h2>
             <form class="quiz">
                 <fieldset>
-                        <input type="radio" id="radio1" value="${store.quizArr[store.currentQuestion - 1].options[0]}" name="answer" required></input>
-                        <label for="radio1" class="answerOption">${store.quizArr[store.currentQuestion - 1].options[0]}</label>
-                        <input type="radio" id="radio2" value="${store.quizArr[store.currentQuestion - 1].options[1]}" name="answer" required></input>
-                        <label for="radio2" class="answerOption">${store.quizArr[store.currentQuestion - 1].options[1]}</label>
-                        <input type="radio" id="radio3" value="${store.quizArr[store.currentQuestion - 1].options[2]}" name="answer" required></input>
-                        <label for="radio3" class="answerOption">${store.quizArr[store.currentQuestion - 1].options[2]}</label>
-                        <input type="radio" id="radio4" value="${store.quizArr[store.currentQuestion - 1].options[3]}" name="answer" required></input>
-                        <label for="radio4" class="answerOption">${store.quizArr[store.currentQuestion - 1].options[3]}</label>
+                        ${getFieldset(store.quizArr[store.currentQuestion - 1].options)}
                 </fieldset>
                 <label>
                     <input type="submit" class="quizSubmit"></input>
