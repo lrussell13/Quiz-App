@@ -2,10 +2,7 @@ const store = {
     view: "start",
     currentQuestion: 1,
     score: 0,
-    rightOrWrong: "",
     currentSelectedAnswer: "",
-    reviewMessage: "",
-    ifWrongMessage: "",
     quizArr: [{
         question: "What is the name of Thor’s hammer?",
         answer: "Mjolnir",
@@ -148,13 +145,13 @@ function handleSubmitNextQuestion(store){
 
 function checkScoreForReviewMessage(store){
     if (store.score < 3){
-        store.reviewMessage = "You should probably stick to the sidelines";
+        return "You should probably stick to the sidelines";
     } else if (store.score < 7){
-        store.reviewMessage = "Maybe the sidekick life is the life for you";
+        return "Maybe the sidekick life is the life for you";
     } else if (store.score < 10){
-        store.reviewMessage = "You're becoming a powerful hero";
+        return "You're becoming a powerful hero";
     } else {
-        store.reviewMessage = "You are a true Avenger";
+        return "You are a true Avenger";
     }
 }
 
@@ -168,12 +165,26 @@ function getAnswer(store){
 
 function checkAnswer(store){
     if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
-        store.score++;
-        store.rightOrWrong = "You were right!";   
+        store.score++;  
         store.ifWrongMessage = "";
     } else {
-        store.rightOrWrong = "You were wrong.";
         store.ifWrongMessage = `The correct answer is ${store.quizArr[(store.currentQuestion) - 1].answer}`
+    }
+}
+
+function rightOrWrong(store){
+    if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
+        return "You were right!";   
+    } else {
+        return "You were wrong.";
+    }
+}
+
+function correctAnswer(store){
+    if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
+        return "";   
+    } else {
+        return `The Correct Answer is ${store.quizArr[(store.currentQuestion) - 1].answer}`;
     }
 }
 
@@ -242,8 +253,8 @@ function determineTemplate(store){
         </ul>
         </header>
         <div class="container">
-            <h1>${store.rightOrWrong}</h1>
-            <h2 class="question">${store.ifWrongMessage}</h2>
+            <h1>${rightOrWrong(store)}</h1>
+            <h2 class="question">${correctAnswer(store)}</h2>
             <h3>${store.quizArr[store.currentQuestion - 1].fact}</h3>
             <form class="submitNextQuestion">
                 <label>
@@ -256,7 +267,7 @@ function determineTemplate(store){
         template = 
         `
         <div class="containerStart">
-            <h1>${store.reviewMessage}</h1>
+            <h1>${checkScoreForReviewMessage(store)}</h1>
             <h2>You got ${store.score}/${store.quizArr.length} right</h2>
             <form class="retakeQuiz">
                 <label>
