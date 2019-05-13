@@ -137,7 +137,6 @@ function handleSubmitNextQuestion(store){
         } else {
             event.preventDefault();
             store.view = "review";
-            checkScoreForReviewMessage(store);
             renderView(store);
         }
     });
