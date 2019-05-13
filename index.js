@@ -121,7 +121,7 @@ function handleSubmitAnswer(store) {
     $(".quiz").on("submit", function(event){
         event.preventDefault();
         getAnswer(store);
-        checkAnswer(store);
+        incrementScore(store);
         store.view = "quizAnswerReview";
         renderView(store);
     });
@@ -164,16 +164,21 @@ function getAnswer(store){
 }
 
 function checkAnswer(store){
-    if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
-        store.score++;  
-        store.ifWrongMessage = "";
+    if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){ 
+        return true;
     } else {
-        store.ifWrongMessage = `The correct answer is ${store.quizArr[(store.currentQuestion) - 1].answer}`
+        return false;
+    }
+}
+
+function incrementScore(store){
+    if(checkAnswer(store)){
+        store.score++;   
     }
 }
 
 function rightOrWrong(store){
-    if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
+    if(checkAnswer(store)){
         return "You were right!";   
     } else {
         return "You were wrong.";
@@ -181,7 +186,7 @@ function rightOrWrong(store){
 }
 
 function correctAnswer(store){
-    if(store.currentSelectedAnswer === store.quizArr[(store.currentQuestion) - 1].answer){
+    if(checkAnswer(store)){
         return "";   
     } else {
         return `The Correct Answer is ${store.quizArr[(store.currentQuestion) - 1].answer}`;
@@ -204,9 +209,6 @@ function getFieldset(arr) {
 
     return eachOptionArr.join("");
 }
-
-
-
 
 function determineTemplate(store){
     let template = "";
